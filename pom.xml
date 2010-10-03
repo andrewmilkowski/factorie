@@ -1,0 +1,219 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cc.factorie</groupId>
+    <artifactId>factorie_2.8.0</artifactId>
+    <version>0.9.0-SNAPSHOT</version>
+    <inceptionYear>2009</inceptionYear>
+    <properties>
+        <scala.version>2.8.0</scala.version>
+<!--
+        <scala.version>2.8.0.RC7</scala.version>
+-->
+    </properties>
+    <url>http://factorie.googlecode.com</url>
+    <scm>
+        <connection>scm:hg:file://${basedir}</connection>
+        <developerConnection>scm:hg:file://${basedir}</developerConnection>
+<!--
+        <connection>scm:hg:http://factorie.googlecode.com/hg/</connection>
+        <developerConnection>scm:hg:https://factorie.googlecode.com/hg/</developerConnection>
+        <url>http://code.google.com/p/factorie/source/checkout</url>
+-->
+    </scm>
+
+    <repositories>
+        <repository>
+            <id>scala-tools.org</id>
+            <name>Scala-Tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-snapshots</url>
+        </repository>
+        <repository>
+            <id>iesl.cs.umass.edu</id>
+            <name>IESL repository</name>
+            <url>http://iesl.cs.umass.edu:8081/nexus/content/repositories/thirdparty/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>scala-tools.org</id>
+            <name>Scala-Tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-snapshots</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-tools.testing</groupId>
+            <artifactId>specs</artifactId>
+            <version>1.6.2.1</version>
+	    <!--
+            <version>1.6.2.2-SNAPSHOT</version>
+            -->
+	    <!--
+            <version>2.8.0.Beta1-1.6.2</version>
+            -->
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <!-- Tells Maven to use the Scala compiler first, from http://scala-tools.org/mvnsites/maven-scala-plugin/usage_java.html -->
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>scala-compile-first</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>scala-test-compile</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!-- <scalaVersion>${scala.version}</scalaVersion> -->
+                <configuration>
+                  <jvmArgs><jvmArg>-Xmx1024m</jvmArg></jvmArgs>
+                  <args><arg>-explaintypes</arg></args>
+                  <launchers>
+		     <launcher>
+		       <id>LDA</id>
+		       <mainClass>cc.factorie.example.LDADemo</mainClass>
+			<args>
+			  <arg>/Users/mccallum/research/data/text/nipstxt/nips03</arg>
+			</args>
+                        <jvmArgs><jvmArg>-Xmx512m</jvmArg></jvmArgs>
+		     </launcher>
+		     <launcher>
+		       <id>WordSegmenter</id>
+		       <mainClass>cc.factorie.example.WordSegmenterDemo</mainClass>
+		     </launcher>
+		     <launcher>
+		       <id>Multinomial</id>
+		       <mainClass>cc.factorie.example.MultinomialDemo</mainClass>
+		     </launcher>
+                     <launcher>
+                        <id>Dexa1</id>
+                        <mainClass>cc.factorie.example.Dexa1</mainClass>
+                        <!-- args are optional <args><arg>arg1</arg></args> -->
+			<args>
+			  <arg>--train=/Users/mccallum/research/data/ie/ner2003/eng.train,/Users/mccallum/research/data/ie/ner2003/eng.testa</arg>
+			  <arg>--test=/Users/mccallum/research/data/ie/ner2003/eng.testb</arg>
+			  <arg>--model=/Users/mccallum/tmp/spanner1.factorie</arg>
+			  <arg>--lexicons=/Users/mccallum/research/data/resources/lexicons</arg>
+			  <arg>--nosentences</arg>
+			  <arg>--verbose</arg>
+			</args>
+                        <!-- jvmArgs are optional -->
+                        <jvmArgs><jvmArg>-Xmx1024m</jvmArg></jvmArgs>
+                      </launcher>
+		  </launchers>
+		</configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                  <source>1.5</source>
+                  <target>1.5</target>
+		</configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Customize the generated Eclipse project files for Scala -->
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <configuration>
+                    <!-- <jvmArgs><jvmArg>-Xmx1524m</jvmArg></jvmArgs> -->
+                    <sourceIncludes>
+                        <sourceInclude>**/*.scala</sourceInclude>
+                    </sourceIncludes>
+                    <buildcommands>
+                        <buildcommand>ch.epfl.lamp.sdt.core.scalabuilder</buildcommand>
+                    </buildcommands>
+                    <additionalProjectnatures>
+                        <!-- maven-eclipse-plugin puts this nature after org.eclipse.jdt.core.javanature in .project so the project will have a J badge instead of an S in the Package Explorer -->
+                        <projectnature>ch.epfl.lamp.sdt.core.scalanature</projectnature>
+                    </additionalProjectnatures>
+                    <classpathContainers>
+                        <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
+                        <classpathContainer>ch.epfl.lamp.sdt.launching.SCALA_CONTAINER</classpathContainer>
+                    </classpathContainers>
+                </configuration>
+            </plugin>
+            <!-- Adds src/main/scala and src/test/scala as source folders, from http://groups.google.com/group/liftweb/browse_thread/thread/3dac7002f9e59546/3918bba2f7a92cd3?pli=1 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/scala</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/test/scala</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <configuration>
+                    <scalaVersion>${scala.version}</scalaVersion>
+
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>

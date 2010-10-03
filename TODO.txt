@@ -1,0 +1,21 @@
+Coding:
+Implement Forany2 in logic1
+Fix IntTerm in logic1
+Support inference over relations in er1
+Make an example for er2 and logic2
+Consider preliminary message-passing architecture
+Create simple infrastructure for non-relational generative Bayes nets
+
+Testing:
+Create more unit tests!
+Why does LDA get much slower when you tell the sampler not to create DiffLists.  I expected the opposite! 
+
+Documentation:
+Clean up all examples
+Put in ACE coref example
+Put in final spanner example
+Create a Gaussian mixture example
+Write README.txt
+Write manual in package.html
+Document how to get a factorie interpretter prompt
+

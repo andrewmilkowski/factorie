@@ -1,0 +1,29 @@
+fork source: http://code.google.com/p/factorie/
+
+Probabilistic programming with imperatively-defined factor graphs
+
+why "factor graphs"? because they define best probabilistic models, what follows is (factorie project) developed by (Andrew McCallum) researcher from the University of Massachusetts Amherst, to give an idea what he is all about, he is teaching a course called "Our Networked World", project co-sponsors are all major US Intelligence Agencies (known:) NSA/DARPA/CIA and google (:) it is probably THE most advanced "google code" project known (although some of the key interfaces, such as probabilistic graph database were conveniently "left out")
+
+Language chosen is scala why scala? because it redefines paradigm of computing by introduction of meta and functional programming allowing 
+natural modeling in dynamic and stochastic (random, uncertain) computation.
+
+Scala itself is constantly evolving, it is not yet accepted as "safe" and "business" language of choice, it will take a while... it is accepted in the academia however, and this project is its incarnation.
+
+So what factorie does, factorie takes abstract theoretical idea in factor graphs and "materializes" idea into practical applications, its defining concept is machine learning and almost-self to full autonomous inference. 
+
+It is probabilistic as it tries to model "uncertain world", it "breaks down" world-space into "discrete factor graphs" and resolves convergence by computing probability distributions. 
+
+One of its application It is capable to discern language itself, know attributes of sentence-structure beyond naive approximation, in some ways it moves towards cognitive modeling (speculation is that biological systems work on the same assumption) it is different from neural networks as it does not exactly tries to model neuron/axon structure but rather defines abstract model in graph-space that might or might not necessarily translate to biology evolution.
+
+Subject of factor graphs (as I found out) touches depths of mathematical theorems, including computational complexity and comprises of frontier of mathematical modeling of real world phenomena from language acquisition and comprehension to computer vision and finally robotics.
+
+
+Highly recommend following video set (to gain theoretical background on factor graphs)
+
+"Graphical Models, Variational Methods, and Message-Passing author:Martin J. Wainwright, UC Berkeley"
+
+http://videolectures.net/mlss06tw_wainwright_gmvmm/
+
+Also facebook has this nice little "fan group" (of which I am the only member as of October 2010) but I did not create this group, some visionary facebook engineer did.
+
+http://www.facebook.com/pages/Factor-Graphs/110785042305288
